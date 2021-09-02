@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Item from "../components/Item";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import ListGroup from 'react-bootstrap/ListGroup'
+import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 const URL = "http://localhost:3010/api/todolistt";
@@ -19,14 +19,11 @@ const TodoList = () => {
   }
   function mapear() {
     const mapeado = data.map((props) => {
-      console.log(props.done)
       return (
-        <div>
-          
+        <div key={props._id}>
           <Item
-          key={props._id}
             dados={{ id: props._id, tarefa: props.tarefa, done: props.done }}
-            func={{ deletar: deletar, editar: editar,concluido:concluido }}
+            func={{ deletar: deletar, editar: editar, concluido: concluido }}
           />
         </div>
       );
@@ -38,7 +35,7 @@ const TodoList = () => {
   }, [data]);
   useEffect(() => {
     load();
-  }, [deletar,editar,concluido]);
+  }, []);
   function adicionar(prop) {
     axios.post(URL, { tarefa: prop }).then(() => {
       setCadastrou(true);
@@ -50,13 +47,19 @@ const TodoList = () => {
     });
   }
   function deletar(param) {
-    axios.delete(`${URL}/${param}`);
+    axios.delete(`${URL}/${param}`).then(() => {
+      load();
+    });
   }
   function editar(param, novatarefa) {
-    axios.put(`${URL}/${param}`, { tarefa: novatarefa });
+    axios.put(`${URL}/${param}`, { tarefa: novatarefa }).then(() => {
+      load();
+    });
   }
-  function concluido(param,estado) {
-    axios.put(`${URL}/${param}`, { done: estado });
+  function concluido(param, estado) {
+    axios.put(`${URL}/${param}`, { done: estado }).then(() => {
+      load();
+    });
   }
   return (
     <div className="principal">
@@ -72,15 +75,17 @@ const TodoList = () => {
             value={texto}
             aria-describedby="basic-addon2"
           />
-          <Button disabled={cadastrou} id="basic-addon2" onClick={() => adicionar(texto)}>
-            Add
+          <Button
+            variant="primary"
+            disabled={cadastrou}
+            id="basic-addon2"
+            onClick={() => adicionar(texto)}
+          >
+            <i className="fas fa-calendar-plus"></i>
           </Button>
         </InputGroup>
       </div>
-      <ListGroup>
-      {dados}
-      </ListGroup>
-
+      <ListGroup>{dados}</ListGroup>
     </div>
   );
 };
