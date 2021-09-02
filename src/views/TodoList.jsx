@@ -20,7 +20,10 @@ const TodoList = () => {
     const mapeado = data.map((props) => {
       return (
         <div>
-          <Item dados={{id:props._id,tarefa:props.tarefa}} func={(deletar, editar)} />
+          <Item
+            dados={{ id: props._id, tarefa: props.tarefa, done: props.done }}
+            func={(deletar, editar)}
+          />
         </div>
       );
     });
@@ -29,13 +32,16 @@ const TodoList = () => {
   useEffect(() => {
     mapear();
   }, [data]);
-
+  useEffect(() => {
+    load();
+  }, []);
   function adicionar() {
     axios.post(URL).then(() => {
       setCadastrou(!cadastrou);
       setTexto("");
       setTimeout(() => {
         setCadastrou(!cadastrou);
+        load();
       }, 2000);
     });
   }
@@ -48,7 +54,7 @@ const TodoList = () => {
   return (
     <div className="principal">
       <div hidden={!cadastrou} className="mensagem">
-        <span >
+        <span>
           <strong>Sucesso!</strong> Tarefa criada
         </span>
       </div>
