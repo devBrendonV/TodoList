@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-const URL = "http://localhost:3080/api/todolist";
+const URL = "http://localhost:3010/api/todolistt";
 
 const TodoList = () => {
   const [texto, setTexto] = useState("");
@@ -22,7 +22,7 @@ const TodoList = () => {
         <div>
           <Item
             dados={{ id: props._id, tarefa: props.tarefa, done: props.done }}
-            func={(deletar, editar)}
+            func={{deletar:deletar,editar:editar}}
           />
         </div>
       );
@@ -35,18 +35,19 @@ const TodoList = () => {
   useEffect(() => {
     load();
   }, []);
-  function adicionar() {
-    axios.post(URL).then(() => {
-      setCadastrou(!cadastrou);
+  function adicionar(prop) {
+    axios.post(URL,{tarefa:prop}).then(() => {
+      setCadastrou(true);
       setTexto("");
       setTimeout(() => {
-        setCadastrou(!cadastrou);
+        setCadastrou(false);
         load();
       }, 2000);
     });
   }
   function deletar(param) {
     axios.delete(`${URL}/${param}`);
+    load()
   }
   function editar(param, estado) {
     axios.put(`${URL}/${param}`, { edit: !estado });
