@@ -21,6 +21,10 @@
     display: flex;
     justify-content: space-between;
 }
+#concluido{
+    background-color: blue;
+    color: white;
+}
 .botoes button{
     margin-left: 10px;
 }

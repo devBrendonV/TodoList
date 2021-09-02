@@ -7,12 +7,12 @@ const Item = (param) => {
   const func = param.func;
   const [editar, setEditar] = useState(false)
   return (
-    <div>
-        <ListGroup.Item>
+    <div >
+        <ListGroup.Item id={props.done ? "concluido" : ''}>
           <div className="itens">
             <div className="item">
               <label hidden={editar} htmlFor="item">
-                <input id='item' name="item" type="checkbox" />
+                <input checked={props.done} id='item' name="item" type="checkbox" onClick={()=>func.concluido(props.id,!props.done)}/>
                 <span>{props.tarefa}</span>
               </label>
               <input  hidden={!editar} placeholder="Renomeie a tarefa..." onChange={(e)=>func.editar(props.id,e.target.value)} type="text" />

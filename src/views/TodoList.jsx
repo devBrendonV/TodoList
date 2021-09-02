@@ -19,11 +19,14 @@ const TodoList = () => {
   }
   function mapear() {
     const mapeado = data.map((props) => {
+      console.log(props.done)
       return (
         <div>
+          
           <Item
+          key={props._id}
             dados={{ id: props._id, tarefa: props.tarefa, done: props.done }}
-            func={{ deletar: deletar, editar: editar }}
+            func={{ deletar: deletar, editar: editar,concluido:concluido }}
           />
         </div>
       );
@@ -35,7 +38,7 @@ const TodoList = () => {
   }, [data]);
   useEffect(() => {
     load();
-  }, []);
+  }, [deletar,editar,concluido]);
   function adicionar(prop) {
     axios.post(URL, { tarefa: prop }).then(() => {
       setCadastrou(true);
@@ -48,11 +51,12 @@ const TodoList = () => {
   }
   function deletar(param) {
     axios.delete(`${URL}/${param}`);
-    load();
   }
   function editar(param, novatarefa) {
     axios.put(`${URL}/${param}`, { tarefa: novatarefa });
-    load();
+  }
+  function concluido(param,estado) {
+    axios.put(`${URL}/${param}`, { done: estado });
   }
   return (
     <div className="principal">
