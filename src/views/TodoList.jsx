@@ -20,7 +20,7 @@ const TodoList = () => {
     const mapeado = data.map((props) => {
       return (
         <div>
-          <Item dados={{ data: data }} func={(deletar, editar)} />
+          <Item dados={{id:props._id,tarefa:props.tarefa}} func={(deletar, editar)} />
         </div>
       );
     });
