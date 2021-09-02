@@ -12,7 +12,8 @@ label {
   display: inline-block;
   margin-left: 5px;
   max-width: 50vw;
-  overflow-x: scroll;
+  overflow: hidden;
+  height: 17px;
 }
 i {
   font-size: 20px;
@@ -41,7 +42,7 @@ i {
   justify-content: space-between;
 }
 #concluido {
-  background-color: rgb(46, 204, 107);
+  background-color: rgb(78, 240, 140);
   color: rgb(5, 4, 4);
 }
 .edit {

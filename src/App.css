@@ -16,3 +16,19 @@ body {
 .navbar {
   display: block;
 }
+.semTarefas{
+  text-align: center;
+  font-size: 130%;
+}
+.home{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: center;
+  margin-top: 25vh;
+}
+.home h1{
+  font-weight: bold;
+  text-shadow: 3px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+}
+.home p {
+  text-shadow: 1px 1px #558ABB;
+}

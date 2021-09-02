@@ -77,7 +77,7 @@ const TodoList = () => {
           />
           <Button
             variant="primary"
-            disabled={cadastrou}
+            disabled={cadastrou || !texto ? true : false}
             id="basic-addon2"
             onClick={() => adicionar(texto)}
           >
@@ -85,7 +85,7 @@ const TodoList = () => {
           </Button>
         </InputGroup>
       </div>
-      <ListGroup>{dados}</ListGroup>
+      <ListGroup>{dados.length == 0 ? <span className='semTarefas'>Nenhuma tarefa pendente...</span> :dados }</ListGroup>
     </div>
   );
 };
