@@ -50,8 +50,9 @@ const TodoList = () => {
     axios.delete(`${URL}/${param}`);
     load();
   }
-  function editar(param, estado) {
-    axios.put(`${URL}/${param}`, { edit: !estado });
+  function editar(param, novatarefa) {
+    axios.put(`${URL}/${param}`, { tarefa: novatarefa });
+    load();
   }
   return (
     <div className="principal">

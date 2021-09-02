@@ -11,21 +11,23 @@ const Item = (param) => {
         <ListGroup.Item>
           <div className="itens">
             <div className="item">
-              <label htmlFor="item">
-                <input name="item" type="checkbox" />
+              <label hidden={editar} htmlFor="item">
+                <input id='item' name="item" type="checkbox" />
                 <span>{props.tarefa}</span>
               </label>
+              <input  hidden={!editar} placeholder="Renomeie a tarefa..." onChange={(e)=>func.editar(props.id,e.target.value)} type="text" />
               <div className="botoes">
                 <Button disabled={editar} onClick={() => func.deletar(props.id)} variant="danger">
                   Deletar
                 </Button>
-                <Button onClick={() => func.editar(props.id)} variant="success">
-                  Editar
+                <Button onClick={() => setEditar(!editar)} variant={editar ? "info": "success"}>
+                  {editar ? 'Salvar': 'Editar'}
                 </Button>
               </div>
             </div>
-            <div className='editar'>
-
+            <div hidden={!editar} className='editar'>
+              
+            {/* func.editar(props.id) */}
             </div>
           </div>
         </ListGroup.Item>
