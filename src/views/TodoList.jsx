@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Item from "../components/Item";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
+import ListGroup from 'react-bootstrap/ListGroup'
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 const URL = "http://localhost:3010/api/todolistt";
@@ -22,7 +23,7 @@ const TodoList = () => {
         <div>
           <Item
             dados={{ id: props._id, tarefa: props.tarefa, done: props.done }}
-            func={{deletar:deletar,editar:editar}}
+            func={{ deletar: deletar, editar: editar }}
           />
         </div>
       );
@@ -36,7 +37,7 @@ const TodoList = () => {
     load();
   }, []);
   function adicionar(prop) {
-    axios.post(URL,{tarefa:prop}).then(() => {
+    axios.post(URL, { tarefa: prop }).then(() => {
       setCadastrou(true);
       setTexto("");
       setTimeout(() => {
@@ -47,7 +48,7 @@ const TodoList = () => {
   }
   function deletar(param) {
     axios.delete(`${URL}/${param}`);
-    load()
+    load();
   }
   function editar(param, estado) {
     axios.put(`${URL}/${param}`, { edit: !estado });
@@ -66,13 +67,15 @@ const TodoList = () => {
             value={texto}
             aria-describedby="basic-addon2"
           />
-          <Button id="basic-addon2" onClick={() => adicionar(texto)}>
+          <Button disabled={cadastrou} id="basic-addon2" onClick={() => adicionar(texto)}>
             Add
           </Button>
         </InputGroup>
       </div>
-
+      <ListGroup>
       {dados}
+      </ListGroup>
+
     </div>
   );
 };
