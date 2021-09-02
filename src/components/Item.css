@@ -1,0 +1,35 @@
+.principal{
+    margin: 10px auto;
+    width: 500px;
+}
+.mensagem{
+    background-color: rgb(199, 240, 199);
+    padding: 25px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+#basic-addon2{
+    background-color: rgb(47, 47, 235);
+    color: white;
+}
+.itens{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+
+}
+.itens span{
+    margin-left: 5px;
+}
+.item{
+    margin-bottom: 5px;
+    padding: 0;
+    padding-bottom: 10px;
+    width: 100%;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+}
+.botoes button{
+    margin-left: 10px;
+}
