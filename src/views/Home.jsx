@@ -7,6 +7,7 @@ const Home = () => {
             <p>Para uma melhor organização de suas atividade, alcançando melhores resultados!!</p>
             <p>Organize suas tarefas gratuitamente.</p>
             {/* Enviando um novo push */}
+            {/* Novo push com chave registrada */}
         </div>
     )
 }
